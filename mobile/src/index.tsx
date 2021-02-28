@@ -2,6 +2,7 @@ import React, {useEffect, useCallback, useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import {io, Socket} from 'socket.io-client';
+import {PermissionsAndroid} from 'react-native';
 
 export interface ISendCurrentPosition {
   id: string;
@@ -29,6 +30,10 @@ const src: React.FC = () => {
   }, []);
 
   const handleKeyPress = useCallback(async () => {
+    await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_BACKGROUND_LOCATION,
+    );
+
     await Geolocation.getCurrentPosition((info) => {
       const date: ISendCurrentPosition = {
         latitude: info.coords.latitude,

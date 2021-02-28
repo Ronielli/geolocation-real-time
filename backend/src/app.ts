@@ -25,15 +25,16 @@ const io = new socketio.Server(server, {
 });
 
 io.on("connection", (socket) => {
-  socket.join("geolocation");
+ // socket.join();
+
   socket.on("sendCurrentPosition", (data: ISendCurrentPosition) => {
-    io.to("geolocation").emit("receiveCurrentPosition", data);
+    io.emit("receiveCurrentPosition", data);
   });
   socket.on("disconnect", () => {
     console.log("desconectado");
   });
   socket.on("requestCurrentPositionWeb", () => {
-    io.to("geolocation").emit("requestCurrentPosition");
+    io.emit("requestCurrentPosition");
   });
 });
 
