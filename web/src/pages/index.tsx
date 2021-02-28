@@ -5,7 +5,9 @@ export interface ISendCurrentPosition {
   name: string;
   latitude: number;
   longitude: number;
+  time: string;
 }
+
 
 let socket: Socket;
 const JoinRoom: React.FC = () => {

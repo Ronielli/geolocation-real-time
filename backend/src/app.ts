@@ -11,6 +11,7 @@ export interface ISendCurrentPosition {
   name: string;
   latitude: number;
   longitude: number;
+  time: string;
 }
 
 const app = express();

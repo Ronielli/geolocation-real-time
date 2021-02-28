@@ -8,6 +8,7 @@ export interface ISendCurrentPosition {
   name: string;
   latitude: number;
   longitude: number;
+  time: string;
 }
 
 let socket: Socket;
@@ -34,6 +35,7 @@ const src: React.FC = () => {
         longitude: info.coords.longitude,
         id: '1',
         name: 'Ronielli',
+        time: new Date().toISOString(),
       };
       socket.emit('sendCurrentPosition', date);
       setLocation(date);
@@ -46,6 +48,7 @@ const src: React.FC = () => {
       <Text>nome: {location?.name}</Text>
       <Text>latitude: {location?.latitude}</Text>
       <Text>longitude: {location?.longitude}</Text>
+      <Text>time: {location?.time}</Text>
       <Text>Socket oi</Text>
       <TouchableOpacity onPress={handleKeyPress}>
         <Text>Manda </Text>
